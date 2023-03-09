@@ -305,6 +305,13 @@
         type: bool
         doc: >
           Enables or disables playback of the hero vehicle during a playback of a recorded simulation.
+    # --------------------------------------
+    - def_name: set_replayer_ignore_spectator
+      params:
+      - param_name: ignore_spectator
+        type: bool
+        doc: >
+          Determines whether the recorded spectator movements will be replicated by the replayer.
      # --------------------------------------
     - def_name: set_files_base_folder
       params:

@@ -60,32 +60,32 @@ void export_commands() {
   submodule_scope.attr("FutureActor") = 0u;
 
   class_<cr::CommandResponse>("Response", no_init)
-    .add_property("actor_id", +[](const cr::CommandResponse &self) {
+   #.add_property("actor_id", +[](const cr::CommandResponse &self) {
       return self.HasError() ? 0u : self.Get();
     })
-    .add_property("error", +[](const cr::CommandResponse &self) {
+    #.add_property("error", +[](const cr::CommandResponse &self) {
       return self.HasError() ? self.GetError().What() : std::string("");
     })
-    .def("has_error", &cr::CommandResponse::HasError)
+    #.def("has_error", &cr::CommandResponse::HasError)
   ;
 
   class_<cr::Command::SpawnActor>("SpawnActor")
-    .def(
+    #.def(
         "__init__",
         &command_impl::CustomSpawnActorInit<cc::ActorBlueprint, cg::Transform>,
         (arg("blueprint"), arg("transform")))
-    .def(
+    #.def(
         "__init__",
         &command_impl::CustomSpawnActorInit<cc::ActorBlueprint, cg::Transform, const cr::ActorId &>,
         (arg("blueprint"), arg("transform"), arg("parent_id")))
-    .def(
+    #.def(
         "__init__",
         &command_impl::CustomSpawnActorInit<cc::ActorBlueprint, cg::Transform, ActorPtr>,
         (arg("blueprint"), arg("transform"), arg("parent")))
     .def(init<cr::Command::SpawnActor>())
-    .def_readwrite("transform", &cr::Command::SpawnActor::transform)
-    .def_readwrite("parent_id", &cr::Command::SpawnActor::parent)
-    .def("then", &command_impl::Then, (arg("command")))
+    #.def_readwrite("transform", &cr::Command::SpawnActor::transform)
+    #.def_readwrite("parent_id", &cr::Command::SpawnActor::parent)
+    #.def("then", &command_impl::Then, (arg("command")))
   ;
 
   class_<cr::Command::DestroyActor>("DestroyActor")
